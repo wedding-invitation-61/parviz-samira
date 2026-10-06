@@ -1,0 +1,893 @@
+:root {
+  --bg-card: rgba(250, 247, 242, 0.3);
+  --text-dark: #2B231F;
+  --text-muted: #6E635C;
+  --accent-warm: #A05244;
+  --accent-wine: #74252B;
+  --accent-gold: #C29B68;
+  --border-subtle: rgba(43, 35, 31, 0.12);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Полное скрытие полосы прокрутки */
+html, body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.app-container::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+body {
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+  background-color: #EFE8E1;
+  min-height: 100vh;
+}
+
+/* Плавный анимированный фон */
+.animated-bg-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.animated-bg-image {
+  position: absolute;
+  inset: -5%;
+  width: 110%;
+  height: 110%;
+  background-image: url('https://images.unsplash.com/photo-1519225438848-d069b168f2ea?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) saturate(80%);
+  animation: bgAmbientDrift 28s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animated-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(246, 241, 235, 0.82) 0%, rgba(234, 226, 218, 0.94) 100%);
+}
+
+@keyframes bgAmbientDrift {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.06) translate(-1.5%, -1%); }
+  100% { transform: scale(1.02) translate(1%, -1.5%); }
+}
+
+.app-container {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-card);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 14px 45px rgba(43, 35, 31, 0.12);
+}
+
+/* Анимации появления */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.45s; }
+
+/* 1. HERO */
+.hero {
+  padding: 45px 24px 30px;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--accent-warm);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.couple-names {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.couple-names span {
+  font-style: italic;
+  color: var(--accent-gold);
+  font-weight: 300;
+}
+
+.hero-date {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* Кнопка аудиоплеера с двумя переключаемыми SVG */
+.audio-divider-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto 30px;
+  padding: 0 4px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--text-dark);
+  opacity: 0.25;
+}
+
+.audio-circle-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--text-dark);
+  background: rgba(250, 247, 242, 0.8);
+  color: var(--text-dark);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 10px rgba(43, 35, 31, 0.05);
+}
+
+.audio-circle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px solid rgba(43, 35, 31, 0.3);
+  transition: border-color 0.3s ease;
+}
+
+.audio-circle-btn:active {
+  transform: scale(0.94);
+}
+
+.audio-circle-btn svg {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+/* По умолчанию виден только треугольник */
+.audio-circle-btn .icon-play {
+  display: block;
+  transform: translateX(1px);
+}
+
+.audio-circle-btn .icon-pause {
+  display: none;
+}
+
+/* При воспроизведении (класс .playing) треугольник скрывается, появляются две полоски */
+.audio-circle-btn.playing {
+  border-color: var(--accent-warm);
+  color: var(--accent-warm);
+}
+
+.audio-circle-btn.playing::before {
+  border-color: var(--accent-warm);
+}
+
+.audio-circle-btn.playing .icon-play {
+  display: none !important;
+}
+
+.audio-circle-btn.playing .icon-pause {
+  display: block !important;
+}
+
+/* Портретная карточка фото 1 */
+.portrait-card-frame {
+  width: 100%;
+  padding: 10px;
+  background: #FFFFFF;
+  border-radius: 28px;
+  box-shadow: 0 14px 38px rgba(43, 35, 31, 0.12);
+  border: 1px solid rgba(194, 155, 104, 0.3);
+}
+
+.portrait-inner {
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.portrait-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s ease;
+}
+
+.portrait-inner:hover img {
+  transform: scale(1.03);
+}
+
+/* 2. Послание */
+.message-block {
+  padding: 45px 28px 25px;
+  text-align: center;
+}
+
+.message-quote {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+.message-text {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* 3. Календарь */
+.calendar-card {
+  background: #FFFFFF;
+  margin: 15px 24px 45px;
+  padding: 30px 20px;
+  border-radius: 22px;
+  box-shadow: 0 8px 26px rgba(43, 35, 31, 0.05);
+  border: 1px solid var(--border-subtle);
+  text-align: center;
+}
+
+.cal-month {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: var(--text-dark);
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 12px;
+  font-size: 13px;
+}
+
+.cal-col-name {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent-gold);
+  font-weight: 600;
+  padding-bottom: 6px;
+}
+
+.cal-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+}
+
+.cal-num.special-date {
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+}
+
+.cal-num.special-date::before {
+  content: '';
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: var(--accent-warm);
+  border-radius: 50%;
+  z-index: 0;
+  box-shadow: 0 4px 12px rgba(160, 82, 68, 0.4);
+}
+
+.cal-num.special-date span {
+  position: relative;
+  z-index: 1;
+}
+
+.add-cal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  padding: 10px 20px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 30px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dark);
+  text-decoration: none;
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+
+.add-cal-btn:hover {
+  background: var(--text-dark);
+  color: #fff;
+}
+
+/* 4. Диптих */
+.photo-duo-section {
+  padding: 10px 24px 50px;
+}
+
+.duo-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.duo-item {
+  position: relative;
+}
+
+.duo-item:first-child {
+  transform: translateY(-16px);
+}
+
+.duo-item img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  display: block;
+}
+
+.duo-tag {
+  position: absolute;
+  bottom: -10px;
+  left: 12px;
+  background: #FFFFFF;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+/* 5. ИЗОГНУТЫЙ ТАЙМИНГ */
+.curve-timeline-section {
+  padding: 45px 20px 55px;
+  position: relative;
+}
+
+.section-head {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.timeline-intro {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 320px;
+  margin: 6px auto 0;
+  line-height: 1.5;
+}
+
+.curve-timeline-wrapper {
+  position: relative;
+  height: 1080px;
+  margin-top: 20px;
+}
+
+.curve-svg-line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Плавающее сердечко */
+.moving-heart {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 8px rgba(116, 37, 43, 0.45));
+  will-change: left, top;
+}
+
+.heart-svg-icon {
+  width: 100%;
+  height: 100%;
+  fill: var(--accent-wine);
+}
+
+/* Точные координаты карточек без наезда на линию */
+.timeline-step {
+  position: absolute;
+  width: 175px;
+  z-index: 2;
+}
+
+.step-pos-1 { top: 60px;  right: 18px; text-align: right; }
+.step-pos-2 { top: 270px; left: 18px;  text-align: left; }
+.step-pos-3 { top: 480px; right: 18px; text-align: right; }
+.step-pos-4 { top: 690px; left: 18px;  text-align: left; }
+.step-pos-5 { top: 900px; right: 18px; text-align: right; }
+
+.step-time {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--accent-warm);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.step-title {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 500;
+  color: var(--text-dark);
+  line-height: 1.25;
+  margin-bottom: 5px;
+}
+
+.step-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.45;
+  font-weight: 300;
+}
+
+/* 6. ЛОКАЦИЯ */
+.venue-card-section {
+  position: relative;
+  min-height: 540px;
+  margin: 15px 20px 45px;
+  border-radius: 26px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 36px rgba(43, 35, 31, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.venue-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.venue-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(25, 20, 17, 0.55) 0%,
+    rgba(25, 20, 17, 0.82) 50%,
+    rgba(25, 20, 17, 0.94) 100%
+  );
+  z-index: 1;
+}
+
+.venue-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 55px 22px;
+  text-align: center;
+  color: #FAF7F2;
+}
+
+.venue-label {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.venue-title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+.venue-address {
+  font-size: 14px;
+  color: #E2D9D0;
+  font-weight: 300;
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+
+.venue-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 290px;
+  margin: 0 auto;
+}
+
+.venue-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 20px;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.venue-btn.primary {
+  background: var(--accent-warm);
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(160, 82, 68, 0.35);
+}
+
+.venue-btn.glass {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #FAF7F2;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.venue-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
+
+/* 7. ТАЙМЕР */
+.timer-section {
+  padding: 20px 24px 45px;
+  text-align: center;
+}
+
+.timer-container {
+  background: #FFFFFF;
+  padding: 30px 20px;
+  border-radius: 24px;
+  border: 1px solid var(--border-subtle);
+}
+
+.timer-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.timer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.timer-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-digit {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  line-height: 1;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.timer-label {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  font-weight: 500;
+}
+
+/* 8. АНКЕТА RSVP */
+.rsvp-block {
+  padding: 40px 24px 60px;
+  background: #FFFFFF;
+  border-radius: 30px 30px 0 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.rsvp-deadline-badge {
+  display: inline-block;
+  background: rgba(160, 82, 68, 0.08);
+  color: var(--accent-warm);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.form-box {
+  margin-top: 30px;
+}
+
+.input-field {
+  margin-bottom: 26px;
+}
+
+.field-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+  color: var(--text-dark);
+}
+
+.text-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid var(--border-subtle);
+  background: transparent;
+  padding: 10px 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--text-dark);
+  outline: none;
+}
+
+.text-input:focus {
+  border-color: var(--accent-warm);
+}
+
+.person-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  padding: 6px 14px;
+  border-radius: 30px;
+  border: 1px solid var(--border-subtle);
+}
+
+.cnt-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cnt-val {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.radio-pill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.radio-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  font-size: 13.5px;
+  transition: all 0.2s ease;
+}
+
+.radio-card input:checked + .radio-custom {
+  border-color: var(--accent-warm);
+  background: rgba(160, 82, 68, 0.05);
+  font-weight: 500;
+  color: var(--accent-warm);
+}
+
+.radio-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid var(--text-muted);
+  margin-left: auto;
+}
+
+.radio-card input:checked + .radio-custom .radio-dot {
+  border-color: var(--accent-warm);
+  background: var(--accent-warm);
+}
+
+.form-btn {
+  width: 100%;
+  background: var(--text-dark);
+  color: #FAF7F2;
+  border: none;
+  padding: 16px;
+  border-radius: 40px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(43, 35, 31, 0.15);
+}
+
+.form-btn:hover {
+  background: var(--accent-warm);
+}
+
+.success-alert {
+  display: none;
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(160, 82, 68, 0.06);
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.success-alert h4 {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+/* 9. ФУТЕР */
+.closing-sign {
+  padding: 40px 20px 60px;
+  text-align: center;
+  background: #FFFFFF;
+}
+
+.closing-tag {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 38px;
+  color: var(--accent-gold);
+}
+
+/* Контейнер для фиксации видео на весь экран */
+.video-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Уводит видео под весь контент */
+  overflow: hidden;
+  pointer-events: none; /* Клики и скролл проходят сквозь видео */
+}
+
+/* Растягивание самого видео */
+.video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Сохраняет пропорции, обрезая лишние края как background-size: cover */
+  object-position: center;
+  display: block;
+}
+
+/* Полупрозрачный слой поверх видео */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Пример: мягкое теплое затемнение */
+  background: rgba(25, 20, 17, 0.45);
+}
+
+/* Контент сайта должен быть выше видео */
+.content, .app-container {
+  position: relative;
+  z-index: 1;
+}

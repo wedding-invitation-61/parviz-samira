@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Свадебное приглашение • Парвиз и Самира</title>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤍</text></svg>">
+
+  <!-- Шрифты: Cormorant Garamond + Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Фоновое видео -->
+  <div class="video-bg-container">
+    <video class="video-bg" autoplay muted loop playsinline poster="poster.jpg">
+      <source src="video.mp4" type="video/mp4">
+    </video>
+    <!-- Слой затемнения, чтобы текст легко читался -->
+    
+  </div>
+
+
+  <div class="app-container">
+
+    <audio id="bgMusic" loop src="music.mp3"></audio>
+
+    <!-- 1. Главная секция -->
+    <section class="hero scroll-reveal">
+      <div class="hero-eyebrow">Приглашение на свадьбу</div>
+      <h1 class="couple-names">Парвиз <span>&</span> Самира</h1>
+      <div class="hero-date">22 ОКТЯБРЯ 2026</div>
+
+      <!-- Кнопка с двумя готовыми векторными иконками -->
+    <div class="audio-divider-section scroll-reveal delay-1">
+      <div class="divider-line"></div>
+      <button class="audio-circle-btn" id="musicBtn" type="button" aria-label="Включить музыку">
+        <!-- Иконка Play -->
+        <svg class="icon-play" viewBox="0 0 24 24">
+          <polygon points="8,5 19,12 8,19" fill="currentColor"/>
+        </svg>
+        <!-- Иконка Pause (две полоски) -->
+        <svg class="icon-pause" viewBox="0 0 24 24">
+          <rect x="6" y="5" width="3.5" height="14" rx="1" fill="currentColor"/>
+          <rect x="14.5" y="5" width="3.5" height="14" rx="1" fill="currentColor"/>
+        </svg>
+      </button>
+      <div class="divider-line"></div>
+    </div>
+
+      <!-- Фото 1 пары -->
+      <div class="portrait-card-frame scroll-reveal delay-2">
+        <div class="portrait-inner">
+          <img src="couple-1.jpg" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80'" alt="Парвиз и Самира">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Послание -->
+    <section class="message-block scroll-reveal">
+      <div class="message-quote">
+        «Счастье становится настоящим только тогда, когда есть с кем его разделить»
+      </div>
+      <p class="message-text">
+        В нашей жизни наступает особенный день. Мы хотим провести его в кругу самых дорогих и близких людей и приглашаем вас разделить этот радостный праздник вместе с нами.
+      </p>
+    </section>
+
+    <!-- 3. Календарь -->
+    <section class="calendar-card scroll-reveal">
+      <div class="cal-month">Октябрь 2026</div>
+      <div class="cal-grid">
+        <div class="cal-col-name">Пн</div>
+        <div class="cal-col-name">Вт</div>
+        <div class="cal-col-name">Ср</div>
+        <div class="cal-col-name">Чт</div>
+        <div class="cal-col-name">Пт</div>
+        <div class="cal-col-name">Сб</div>
+        <div class="cal-col-name">Вс</div>
+
+        <div></div><div></div><div></div><div>1</div><div>2</div><div>3</div><div>4</div>
+        <div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div>
+        <div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div>
+        <div>19</div><div>20</div><div>21</div>
+        <div class="cal-num special-date"><span>22</span></div>
+        <div>23</div><div>24</div><div>25</div>
+        <div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div><div></div>
+      </div>
+
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Свадьба+Парвиза+и+Самиры&dates=20261022T143000Z/20261022T210000Z&details=Свадебное+торжество+в+ресторане+Летний+дворец&location=с.+Чалтырь,+Ростовская+ул.,+104" target="_blank" class="add-cal-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        В Google Календарь
+      </a>
+    </section>
+
+    <!-- 4. Диптих (Фото 2 и 3) -->
+    <section class="photo-duo-section scroll-reveal">
+      <div class="duo-wrap">
+        <div class="duo-item scroll-reveal delay-1">
+          <img src="couple-2.jpg" onerror="this.src='https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80'" alt="Парвиз и Самира">
+          <div class="duo-tag">together</div>
+        </div>
+        <div class="duo-item scroll-reveal delay-2">
+          <img src="couple-3.jpg" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80'" alt="Парвиз и Самира">
+          <div class="duo-tag">forever</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Тайминг дня со скользящим сердцем -->
+    <section class="curve-timeline-section scroll-reveal">
+      <div class="section-head">
+        <div class="section-eyebrow">Программа дня</div>
+        <h2 class="section-title">Тайминг дня</h2>
+        <p class="timeline-intro">Расписание главных моментов нашего праздника</p>
+      </div>
+
+      <div class="curve-timeline-wrapper" id="timelineWrapper">
+        <!-- Сплошная плавная линия -->
+        <svg class="curve-svg-line" viewBox="0 0 380 1080" preserveAspectRatio="none">
+          <path id="timelineCurvePath" 
+                d="M 190,15 
+                  C 130,15 60,35 60,95 
+                  C 60,180 320,190 320,305 
+                  C 320,390 60,400 60,515 
+                  C 60,600 320,610 320,725 
+                  C 320,810 60,820 60,935 
+                  C 60,1020 140,1060 190,1060" 
+                fill="none" stroke="#2B231F" stroke-width="1.2" opacity="0.35"/>
+        </svg>
+
+        <!-- Скользящее сердечко -->
+        <div id="movingHeart" class="moving-heart">
+          <svg viewBox="0 0 24 24" class="heart-svg-icon">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+
+        <!-- 1. Сбор гостей (Справа) -->
+        <div class="timeline-step step-pos-1 scroll-reveal delay-1">
+          <div class="step-time">17:30</div>
+          <div class="step-title">Сбор гостей</div>
+          <p class="step-desc">Приветственные бокалы, легкие закуски и приятные встречи</p>
+        </div>
+
+        <!-- 2. Начало торжества (Слева) -->
+        <div class="timeline-step step-pos-2 scroll-reveal delay-1">
+          <div class="step-time">18:00</div>
+          <div class="step-title">Начало торжества</div>
+          <p class="step-desc">Время вкусной еды и зажигательных танцев</p>
+        </div>
+
+        <!-- 3. Выход жениха и невесты (Справа) -->
+        <div class="timeline-step step-pos-3 scroll-reveal delay-2">
+          <div class="step-time">18:30</div>
+          <div class="step-title">Выход жениха и невесты</div>
+          <p class="step-desc">Торжественное появление молодых под аплодисменты зала</p>
+        </div>
+
+        <!-- 4. Первый танец молодых (Слева) -->
+        <div class="timeline-step step-pos-4 scroll-reveal delay-2">
+          <div class="step-time">20:00</div>
+          <div class="step-title">Первый танец молодых</div>
+          <p class="step-desc">Самый трогательный и красивый момент праздника</p>
+        </div>
+
+        <!-- 5. Свадебный торт (Справа) -->
+        <div class="timeline-step step-pos-5 scroll-reveal delay-3">
+          <div class="step-time">21:00</div>
+          <div class="step-title">Свадебный торт</div>
+          <p class="step-desc">Сладкая кульминация и праздничный десерт</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Локация: Ресторан «Летний дворец» -->
+    <section class="venue-card-section scroll-reveal">
+      <img class="venue-bg-img" src="restaurant.jpg" onerror="this.src='https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'" alt="Ресторан Летний дворец">
+      <div class="venue-overlay"></div>
+
+      <div class="venue-content">
+        <div class="venue-label">Место проведения</div>
+        <h2 class="venue-title">Ресторан<br>«Летний дворец»</h2>
+        <p class="venue-address">с. Чалтырь, Ростовская улица, 104</p>
+
+        <div class="venue-actions">
+          <a href="https://yandex.ru/maps/?rtext=~47.275667,39.525007" target="_blank" class="venue-btn primary">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+            Построить маршрут
+          </a>
+          <a href="https://3.redirect.appmetrica.yandex.com/route?end-lat=47.275667&end-lon=39.525007&appmetrica_tracking_id=1178268795219780156" target="_blank" class="venue-btn glass">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+            Вызвать такси
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Таймер обратного отсчета -->
+    <section class="timer-section scroll-reveal">
+      <div class="timer-container">
+        <div class="timer-title">До торжества осталось</div>
+        <div class="timer-grid">
+          <div class="timer-slot">
+            <span class="timer-digit" id="tDays">00</span>
+            <span class="timer-label">дней</span>
+          </div>
+          <div class="timer-slot">
+            <span class="timer-digit" id="tHours">00</span>
+            <span class="timer-label">часов</span>
+          </div>
+          <div class="timer-slot">
+            <span class="timer-digit" id="tMinutes">00</span>
+            <span class="timer-label">минут</span>
+          </div>
+          <div class="timer-slot">
+            <span class="timer-digit" id="tSeconds">00</span>
+            <span class="timer-label">секунд</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Анкета RSVP -->
+    <section class="rsvp-block scroll-reveal">
+      <div class="section-head" style="margin-bottom: 15px;">
+        <div class="section-eyebrow">Подтверждение</div>
+        <h2 class="section-title">Анкета гостя</h2>
+      </div>
+
+      <form class="form-box" id="rsvpForm">
+        <div class="input-field">
+          <label class="field-title">Ваше имя и фамилия</label>
+          <input type="text" class="text-input" id="guestName" placeholder="Имя Фамилия" required>
+        </div>
+
+        <div class="input-field">
+          <label class="field-title">Сколько человек будет от семьи?</label>
+          <div class="person-counter">
+            <button type="button" class="cnt-btn" id="decBtn">–</button>
+            <span class="cnt-val" id="cntVal">1</span>
+            <button type="button" class="cnt-btn" id="incBtn">+</button>
+          </div>
+        </div>
+
+        <div class="input-field">
+          <label class="field-title">Сможете ли вы присутствовать?</label>
+          <div class="radio-pill-group">
+            <label class="radio-card">
+              <input type="radio" name="attendance" value="С удовольствием приду" checked>
+              <div class="radio-custom">
+                <span>С удовольствием приду</span>
+                <div class="radio-dot"></div>
+              </div>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="attendance" value="К сожалению, не получится">
+              <div class="radio-custom">
+                <span>К сожалению, не получится</span>
+                <div class="radio-dot"></div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="form-btn" id="submitBtn">Отправить ответ</button>
+      </form>
+
+      <div class="success-alert" id="successBlock">
+        <h4>Благодарим за ответ!</h4>
+        <p>Мы получили вашу анкету и с нетерпением ждем встречи 22 октября в «Летнем дворце»!</p>
+      </div>
+    </section>
+
+    <!-- 9. Финал -->
+    <footer class="closing-sign scroll-reveal">
+      <div class="closing-tag">До встречи!</div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
